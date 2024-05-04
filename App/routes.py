@@ -7,6 +7,8 @@ import requests
 
 bcrypt = Bcrypt(app)
 
+
+
 @app.route("/", methods=['GET'])
 def index():
     return render_template("login.html")
@@ -229,10 +231,7 @@ def create_fitness_program_bodypart(body_part):
 
 @app.route("/fitness_programs/<string:user_id>", methods=["GET"])
 def get_user_fitness_programs(user_id):
-    data = request.json
-   # data.get("user_id")
-   
-
+    
     user_programs = list(Fitness_Program.find({"user_id": user_id}))
     if len(user_programs) == 0:
         return jsonify({"error": "User has no fitness programs"}), 404
